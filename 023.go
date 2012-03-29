@@ -31,6 +31,8 @@ func main() {
     sum := 1
     for i:=2; i<28124; i++ {
         found := false
+        // if i is the sum of two abundant n's, there exists an ans < i such
+        // that i-a is an ans;  use the map to check this membership in O(1)
         for _,a := range ans {
             if a > i { break }
             if ansmap[i-a] != 0 {
