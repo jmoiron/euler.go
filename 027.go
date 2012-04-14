@@ -20,9 +20,9 @@ func sieve(ch chan int, max int) {
 
 func init() {
     // create a map of primes up to a value; 1000^2 is 1000000,
-    // but it seems unlikely we'll reach primes that high..
+    // but it's unlikely we'll reach very high values for n
     in := make(chan int)
-    go sieve(in, 100000)
+    go sieve(in, 5000)
     for next := range in {
         primes[next] = 1
     }
@@ -56,16 +56,15 @@ func main() {
     maxlen := 0
     maxa, maxb := 0, 0
 
-    for a:=-999 ; a < 1000; a++ {
+    for a:=-999 ; a < 1000; a+=2 {
         for _,b := range bvals {
+            if a > b { continue }
             ql := quad_length(a, b)
             if ql > maxlen {
-                fmt.Printf("New max len: n^2 + %dn + %d = %d primes\n", a, b, ql)
                 maxlen = ql
                 maxa, maxb = a, b
             }
         }
     }
-    fmt.Printf("Max: n^2 + %dn + %d = %d primes\n", maxa, maxb, maxlen)
     fmt.Printf("%d x %d = %d\n", maxa, maxb, maxa*maxb)
 }
