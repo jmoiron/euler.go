@@ -6,41 +6,6 @@ import (
 	"strconv"
 )
 
-/*
-var primes = map[int]bool{}
-
-func sieve(ch chan int, max int) {
-	nums := make([]int, max+1)
-	ch <- 2
-	for i := int(3); i < max; i += 2 {
-		if nums[i] == 0 {
-			ch <- i
-			for n := i; n <= max; n += i {
-				nums[n] = 1
-			}
-		}
-	}
-	close(ch)
-}
-
-func init() {
-	// create a map of primes up to 1000000,
-	// but it's unlikely we'll reach very high values for n
-	in := make(chan int)
-	fmt.Println("Generating primes...")
-	go sieve(in, 987654321)
-	for next := range in {
-		primes[next] = true
-		fmt.Println(next)
-	}
-}
-
-func isPrime(i int) bool {
-	_, ok := primes[i]
-	return ok
-}
-*/
-
 func notPrime(n int) bool {
 	if n&2 == 2 {
 		return false
