@@ -101,7 +101,6 @@ func main() {
 
 	// each digit set has n! possible pandigital permutations (9! for 9 digits, 8!
 	// for 8, and so on).  9! is only 362880, which isn't large for a computer.
-	fmt.Println("Pandigital Primes:")
 
 	max := 0
 	digits := "987654321"
@@ -109,17 +108,15 @@ func main() {
 		for _, perm := range permute(digits[i:]) {
 			i := atoi(perm)
 			if isPrime(i) {
-				fmt.Printf("Prime: %d\n", i)
 				if i > max {
 					max = i
 				}
 			} else {
-				fmt.Printf("Not Prime: %d\n", i)
 			}
 		}
 		if max > 0 {
 			break
 		}
 	}
-	fmt.Printf("Max: %d\n", max)
+	fmt.Printf("%d\n", max)
 }
