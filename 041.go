@@ -67,8 +67,11 @@ func main() {
 	// each digit set has n! possible pandigital permutations (9! for 9 digits, 8!
 	// for 8, and so on).  9! is only 362880, which isn't large for a computer.
 
+	// using a divisibility rule for 3, we note that 9 and 8 digit pandigital
+	// have digits adding to 45 (3*15) and 36 (3*12), thus are divisible by 3 and not prime
+
 	max := 0
-	digits := "987654321"
+	digits := "7654321"
 	for i := 0; i < len(digits); i++ {
 		for _, perm := range permute(digits[i:]) {
 			i := atoi(perm)
