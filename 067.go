@@ -1,6 +1,9 @@
 package main
 
-import ("strings"; "strconv")
+import (
+	"strconv"
+	"strings"
+)
 
 var triangle = `59
 73 41
@@ -104,39 +107,41 @@ var triangle = `59
 23 33 44 81 80 92 93 75 94 88 23 61 39 76 22 03 28 94 32 06 49 65 41 34 18 23 08 47 62 60 03 63 33 13 80 52 31 54 73 43 70 26 16 69 57 87 83 31 03 93 70 81 47 95 77 44 29 68 39 51 56 59 63 07 25 70 07 77 43 53 64 03 94 42 95 39 18 01 66 21 16 97 20 50 90 16 70 10 95 69 29 06 25 61 41 26 15 59 63 35`
 
 func max(a, b int) int {
-    if a > b { return a }
-    return b
+	if a > b {
+		return a
+	}
+	return b
 }
 
 // figure out the best path from each node in this row, and incorporate
 // that value into its score
 func eat_row(cur, next []int) {
-    if len(cur)+1 != len(next) {
-        println("Not a valid triangle!!")
-    }
-    for i,_ := range cur {
-        cur[i] += max(next[i], next[i+1])
-    }
+	if len(cur)+1 != len(next) {
+		println("Not a valid triangle!!")
+	}
+	for i, _ := range cur {
+		cur[i] += max(next[i], next[i+1])
+	}
 }
 
 func make_triangle(triangle string) [][]int {
-    ret := make([][]int, 100)
-    s := strings.Trim(triangle, "\n")
-    rows := strings.Split(s, "\n")
-    for i,r := range rows {
-        ints := strings.Split(r, " ")
-        ret[i] = make([]int, len(ints))
-        for j,v := range ints {
-            ret[i][j],_ = strconv.Atoi(v)
-        }
-    }
-    return ret
+	ret := make([][]int, 100)
+	s := strings.Trim(triangle, "\n")
+	rows := strings.Split(s, "\n")
+	for i, r := range rows {
+		ints := strings.Split(r, " ")
+		ret[i] = make([]int, len(ints))
+		for j, v := range ints {
+			ret[i][j], _ = strconv.Atoi(v)
+		}
+	}
+	return ret
 }
 
 func main() {
-    data := make_triangle(triangle)
-    for i:=len(data)-2; i>=0; i-- {
-        eat_row(data[i], data[i+1])
-    }
-    println(data[0][0])
+	data := make_triangle(triangle)
+	for i := len(data) - 2; i >= 0; i-- {
+		eat_row(data[i], data[i+1])
+	}
+	println(data[0][0])
 }

@@ -1,18 +1,22 @@
 package main
 
-import ("fmt"; "strings"; "strconv")
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 func product(s string) int {
-    ans := 1
-    for _,c := range s {
-        v,_ := strconv.Atoi(string(c))
-        ans *= v
-    }
-    return ans
+	ans := 1
+	for _, c := range s {
+		v, _ := strconv.Atoi(string(c))
+		ans *= v
+	}
+	return ans
 }
 
 func main() {
-    Bignumstr := `
+	Bignumstr := `
     73167176531330624919225119674426574742355349194934
     96983520312774506326239578318016984801869478851843
     85861560789112949495459501737958331952853208805511
@@ -33,17 +37,17 @@ func main() {
     84580156166097919133875499200524063689912560717606
     05886116467109405077541002256983155200055935729725
     71636269561882670428252483600823257530420752963450`
-    bns := strings.Replace(Bignumstr, " ", "", -1)
-    bns = strings.Replace(bns, "\n", "", -1)
+	bns := strings.Replace(Bignumstr, " ", "", -1)
+	bns = strings.Replace(bns, "\n", "", -1)
 
-    largest := 0
+	largest := 0
 
-    for i, j := 0, 5; j < len(bns); i++ {
-        prod := product(bns[i:j])
-        if prod > largest {
-            largest = prod
-            fmt.Printf("%d from %s\n", prod, bns[i:j])
-        }
-        j++
-    }
+	for i, j := 0, 5; j < len(bns); i++ {
+		prod := product(bns[i:j])
+		if prod > largest {
+			largest = prod
+			fmt.Printf("%d from %s\n", prod, bns[i:j])
+		}
+		j++
+	}
 }

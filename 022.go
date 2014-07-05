@@ -1,6 +1,11 @@
 package main
 
-import ("fmt"; "strings"; "sort"; "math/big")
+import (
+	"fmt"
+	"math/big"
+	"sort"
+	"strings"
+)
 
 var names = `"MARY"
 "PATRICIA"
@@ -5165,36 +5170,37 @@ var names = `"MARY"
 "DARELL"
 "BRODERICK"
 "ALONSO"`
+
 // ` // # this is just to get around deficiencies in syntax highlighting
 
 var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 func rune_score(r rune) int {
-    for i,c := range alpha {
-        if c == r {
-            return i+1
-        }
-    }
-    return len(alpha)
+	for i, c := range alpha {
+		if c == r {
+			return i + 1
+		}
+	}
+	return len(alpha)
 }
 
 func score(s string) int {
-    sum := 0
-    for _,r := range s {
-        sum += rune_score(r)
-    }
-    return sum
+	sum := 0
+	for _, r := range s {
+		sum += rune_score(r)
+	}
+	return sum
 }
 
 func main() {
-    name_list := strings.Split(names, "\n")
-    for i,s := range name_list {
-        name_list[i] = strings.Trim(s, "\"")
-    }
-    sort.Strings(name_list)
-    sum := big.NewInt(0)
-    for i,s := range name_list {
-        sum.Add(sum, big.NewInt(int64(score(s) * (i+1))))
-    }
-    fmt.Println(sum)
+	name_list := strings.Split(names, "\n")
+	for i, s := range name_list {
+		name_list[i] = strings.Trim(s, "\"")
+	}
+	sort.Strings(name_list)
+	sum := big.NewInt(0)
+	for i, s := range name_list {
+		sum.Add(sum, big.NewInt(int64(score(s)*(i+1))))
+	}
+	fmt.Println(sum)
 }

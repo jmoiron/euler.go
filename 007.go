@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-/* The go tutorial goes over this parallelized algorithm for a prime sieve 
+/* The go tutorial goes over this parallelized algorithm for a prime sieve
    http://golang.org/doc/go_tutorial.html
 */
 
